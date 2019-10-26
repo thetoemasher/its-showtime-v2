@@ -2,17 +2,26 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
-function Home(props) {
-  const [nowPlaying, setNowPlaying] = useState([])
+async function getComingSoon() {
+  
+}
+
+function ComingSoon(props) {
+  const [comingSoon, setComingSoon] = useState([])
+  const [page, setPage] = useState(1)
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`).then(results => {
-      setNowPlaying(results.data.results)
+    axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=${page}`).then(results => {
+      console.log(results.data)
+      setComingSoon(results.data.results)
     })
     return function() {
-      setNowPlaying([])
+      setComingSoon([])
     }
-  }, [])
-  const nowPlayingMap = nowPlaying.map(m => {
+  }, [page])
+  let date = new Date()
+  // console.log(comingSoon)
+  // .filter(m => new Date(m.release_date) >= date)
+  const comingSoonMap = comingSoon.map(m => {
     return (
       <div key={m.id}>
         <Link to={`/movies/details/${m.id}/${m.title}`}>
@@ -26,12 +35,16 @@ function Home(props) {
   return (
     <div>
       What it do?
-      {nowPlayingMap}
+      {comingSoonMap}
+      {page > 1 &&
+        <button onClick={() => setPage(page - 1)}>Previous</button>
+      }
+      <button onClick={() => setPage(page + 1)}>Next</button>
     </div>   
   );
 }
 
-export default Home;
+export default ComingSoon;
 
 // adult: false
 // backdrop_path: "/nDP33LmQwNsnPv29GQazz59HjJI.jpg"

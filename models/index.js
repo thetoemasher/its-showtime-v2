@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
     , users_model = require('./users_model')
+    , coming_soon_model = require('./coming_soon_model')
 const sequelizeInstance = new Sequelize(process.env.CONNECTION_URI, {
     dialect: 'postgres',
     // native: true,
@@ -18,6 +19,7 @@ const sequelizeInstance = new Sequelize(process.env.CONNECTION_URI, {
 
 const preModels = [
     { key: 'Users', setup: users_model },
+    { key: 'Coming_Soon', setup: coming_soon_model },
   ]
   
   let postModels = { models: {}, sequelizeInstance }

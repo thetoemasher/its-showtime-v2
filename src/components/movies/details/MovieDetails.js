@@ -13,7 +13,6 @@ function MovieDetails(props) {
             setloading(false)
         })
     }, [])
-    console.log(movieInfo)
 
     if(loading) {
         return (

@@ -8,6 +8,15 @@ create table users(
     email varchar(255)
 )
 
+create table coming_soon(
+    coming_soon_id serial primary key,
+    tmdb_id text
+)
+
+insert into coming_soon (tmdb_id)
+values (458156)
+
+
 -- create table categorized_films (
 --     user_id integer references users(id),
 --     movie_id text,
