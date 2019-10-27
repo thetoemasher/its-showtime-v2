@@ -5,6 +5,7 @@ import Home from './components/home/Home'
 import MovieDetails from './components/movies/details/MovieDetails'
 import ComingSoon from './components/comingSoon/ComingSoon'
 import TheaterSearch from './components/theaterSearch/TheaterSearch'
+import Login from './components/auth/Login'
 import axios from 'axios'
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path='/movies/details/:movie_id/:movie_title' exact component={MovieDetails}/>
         <Route path='/coming-soon' component={ComingSoon} />
         <Route path='/theater-search' component={TheaterSearch} />
+        <Route path='/Login' component={Login} />
+
       </Switch>
     </div>   
   );

@@ -5,6 +5,8 @@ module.exports = {
     login: async (req, res) => {
         const {Users} = req.app.get('models')
         const {login, password} = req.body
+        if(!login) return res.status(401).send({error: 'Please provide an email/username'})
+        if(!password) return res.status(401).send({error: 'Please provide a password'})
         const userCheck = await Users.findOne({where: { [Op.or]: [{email: login}, {username: login}] }})
         
         if(!userCheck) {
