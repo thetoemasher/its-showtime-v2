@@ -7,6 +7,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         tmdb_id: {
             type: dataTypes.TEXT
+        },
+        user_id: {
+            type: dataTypes.INTEGER
         }
     }, {  freezeTableName: true})
 }

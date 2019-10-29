@@ -4,12 +4,20 @@ module.exports = {
     getComingSoon: async (req, res) => {
         try{
         const {Coming_Soon} = req.app.get('models')
-        let comingSoon = await Coming_Soon.findAll()
+        console.log('user', req.session.user)
+        let comingSoon = await Coming_Soon.findAll({where: {user_id: req.session.user.user_id}})
         res.status(200).send(comingSoon)
         } catch(error) {
             console.log(error)
         }
 
+    },
+    addComingSoon: async (req, res) => {
+        try {
+            const {Coming_Soon} = req.app.get('models')
+        } catch(error) {
+
+        }
     }
     // login: async (req, res) => {
     //     const {Users} = req.app.get('models')

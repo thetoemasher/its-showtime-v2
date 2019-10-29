@@ -21,6 +21,7 @@ module.exports = {
 
         delete user.password
         req.session.user = user
+        console.log('user', req.sesison)
         res.status(200).send(user)
     },
     register: async (req, res) => {
